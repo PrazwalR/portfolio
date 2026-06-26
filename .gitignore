@@ -32,3 +32,6 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
+
+# design-handoff bundle (binary artifact; specs already applied to source)
+*.zip

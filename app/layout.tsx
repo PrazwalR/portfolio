@@ -1,11 +1,27 @@
 import type { Metadata, Viewport } from "next";
-import { GeistSans } from "geist/font/sans";
-import { GeistMono } from "geist/font/mono";
+import { Space_Grotesk, Space_Mono } from "next/font/google";
 
 import "./globals.css";
 import { site } from "@/content/site";
 import { LenisProvider } from "@/components/providers/lenis-provider";
 import { Cursor } from "@/components/providers/cursor";
+import { Interactions } from "@/components/providers/interactions";
+
+// Design-handoff typography: display/sans = Space Grotesk, mono = Space Mono.
+// globals.css --font-sans / --font-mono point at these CSS variables.
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-space-grotesk",
+  display: "swap",
+});
+
+const spaceMono = Space_Mono({
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  variable: "--font-space-mono",
+  display: "swap",
+});
 
 // TODO: set to the production domain once deployed (used for canonical + OG URLs).
 const SITE_URL = "https://prazwalratti.vercel.app";
@@ -52,7 +68,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${GeistSans.variable} ${GeistMono.variable} dark`}
+      className={`${spaceGrotesk.variable} ${spaceMono.variable} dark`}
       suppressHydrationWarning
     >
       <body className="min-h-dvh">
@@ -64,6 +80,7 @@ export default function RootLayout({
         </a>
         <LenisProvider>{children}</LenisProvider>
         <Cursor />
+        <Interactions />
       </body>
     </html>
   );

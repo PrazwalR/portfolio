@@ -1,10 +1,30 @@
 import { ArrowUpRight } from "lucide-react";
 
 import { contributions } from "@/content/open-source";
-import { Badge, Container, SectionHeading } from "@/components/ui";
+import { Container, SectionHeading } from "@/components/ui";
+import { Counter } from "@/components/ui/counter";
 import { Reveal } from "@/components/motion/reveal";
 
 export function OpenSource() {
+  const stats = [
+    {
+      value: contributions.reduce((sum, c) => sum + c.prs.length, 0),
+      label: "PRs merged",
+    },
+    { value: contributions.length, label: "Orgs" },
+    {
+      value: new Set(
+        contributions.flatMap((c) =>
+          c.prs.map((p) => {
+            const m = p.href.match(/github\.com\/([^/]+\/[^/]+)/);
+            return m ? m[1] : p.href;
+          })
+        )
+      ).size,
+      label: "Repos",
+    },
+  ];
+
   return (
     <section
       id="open-source"
@@ -21,7 +41,25 @@ export function OpenSource() {
           />
         </Reveal>
 
-        <ul className="mt-12 flex flex-col">
+        <Reveal delay={0.05}>
+          <dl className="mt-12 grid grid-cols-3 overflow-hidden rounded-xl border border-border bg-card">
+            {stats.map((s) => (
+              <div
+                key={s.label}
+                className="flex flex-col items-center gap-1 border-l border-border p-6 text-center first:border-l-0 sm:p-7"
+              >
+                <dd className="text-4xl font-semibold tracking-tight text-accent sm:text-5xl">
+                  <Counter to={s.value} />
+                </dd>
+                <dt className="font-mono text-xs uppercase tracking-[0.16em] text-muted-foreground">
+                  {s.label}
+                </dt>
+              </div>
+            ))}
+          </dl>
+        </Reveal>
+
+        <ul className="mt-8 flex flex-col">
           {contributions.map((c, i) => (
             <Reveal key={c.repo} delay={i * 0.03}>
               <li className="group grid gap-4 border-t border-border py-6 last:border-b md:grid-cols-[minmax(0,16rem)_1fr]">

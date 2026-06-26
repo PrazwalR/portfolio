@@ -33,8 +33,13 @@ export function FeaturedProjects() {
 
         <div className="mt-12 grid gap-6 sm:grid-cols-2">
           {projects.map((project, i) => (
-            <Reveal key={project.name} delay={i * 0.05}>
-              <Card interactive className="group flex h-full flex-col">
+            <Reveal key={project.name} delay={i * 0.065}>
+              <div
+                data-tilt
+                data-cursor="link"
+                className="group h-full [transform-style:preserve-3d] will-change-transform"
+              >
+                <Card className="flex h-full flex-col transition-[border-color,box-shadow] duration-base ease-out hover:border-accent/40 hover:shadow-glow">
                 <CardHeader>
                   <div className="flex items-baseline justify-between gap-3">
                     <CardTitle className="flex items-center gap-1.5">
@@ -87,7 +92,8 @@ export function FeaturedProjects() {
                     ) : null}
                   </div>
                 </CardFooter>
-              </Card>
+                </Card>
+              </div>
             </Reveal>
           ))}
         </div>

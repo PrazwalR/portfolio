@@ -99,6 +99,13 @@ const config: Config = {
         fast: "var(--duration-fast)",
         base: "var(--duration-base)",
         slow: "var(--duration-slow)",
+        counter: "var(--counter-duration)",
+      },
+      transitionDelay: {
+        stagger: "var(--stagger)",
+      },
+      translate: {
+        reveal: "var(--reveal-distance)",
       },
       transitionTimingFunction: {
         out: "var(--ease-out)",
@@ -108,6 +115,13 @@ const config: Config = {
       keyframes: {
         "fade-up": {
           from: { opacity: "0", transform: "translateY(12px)" },
+          to: { opacity: "1", transform: "translateY(0)" },
+        },
+        "reveal-up": {
+          from: {
+            opacity: "0",
+            transform: "translateY(var(--reveal-distance))",
+          },
           to: { opacity: "1", transform: "translateY(0)" },
         },
         "accordion-down": {
@@ -121,6 +135,7 @@ const config: Config = {
       },
       animation: {
         "fade-up": "fade-up var(--duration-slow) var(--ease-out) both",
+        "reveal-up": "reveal-up var(--reveal-duration) var(--ease-out) both",
         "accordion-down": "accordion-down var(--duration-base) var(--ease-out)",
         "accordion-up": "accordion-up var(--duration-base) var(--ease-out)",
       },

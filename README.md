@@ -8,9 +8,11 @@ a handoff bundle can be merged back cleanly.
 
 - **Next.js 15** (App Router) · **React 19** · **TypeScript**
 - **Tailwind CSS v3.4** + **shadcn/ui**-style primitives
-- **Geist** Sans/Mono via `next/font`
-- Motion (kept minimal, wired): **framer-motion**, **@react-three/fiber + three**
-  (lazy hero stub), **lenis** (smooth scroll), custom cursor
+- **Space Grotesk** (display/sans) + **Space Mono** via `next/font`
+- Motion (design-handoff system): **canvas-2D dot-matrix hero** (ambient wave +
+  cursor push + click shockwave), **targeting-reticle cursor**, **magnetic CTAs**
+  + click ripple, **3D-tilt** project cards, **framer-motion** scroll reveals,
+  **lenis** smooth scroll, animated count-up stats. All reduced-motion + touch gated.
 
 ## Getting started
 
@@ -67,10 +69,10 @@ app/
   design-system/page.tsx  living style guide
   blog/page.tsx           placeholder index
 components/
-  ui/                     token-driven primitives (Button, Card, Badge, …)
+  ui/                     token-driven primitives (Button, Card, Badge, Counter, …)
   sections/               Hero, FeaturedProjects, OpenSource, Skills, About, Blog, ContactFooter
-  three/                  hero-background (lazy) + hero-canvas (R3F stub)
-  providers/              lenis-provider, cursor
+  hero/                   hero-background (lazy) + dot-field (canvas-2D) + animated-name
+  providers/              lenis-provider, cursor (reticle), interactions (magnetic/tilt/ripple)
   motion/                 reveal (scroll animation)
   site-header.tsx
 content/                  site, projects, open-source, skills, blog (typed data)
@@ -80,10 +82,12 @@ public/resume.pdf
 ## Accessibility & performance
 
 - Mobile-first, fully responsive; semantic landmarks; keyboard-navigable; skip-link.
-- `prefers-reduced-motion` honored globally (CSS killswitch) **and** per-feature
-  (Lenis, Reveal, cursor, and the 3D hero all disable/freeze).
-- 3D is dynamically imported (`ssr:false`) and only mounted after idle, so it
-  never blocks first paint.
+- `prefers-reduced-motion` honored globally (CSS killswitch) **and** per-feature:
+  reticle hidden, dot-field frozen to one frame, reveals show instantly, count-up
+  jumps to final, name entrance + Lenis disabled.
+- Cursor + magnetic + tilt gate on `(pointer:fine)` — touch gets native scroll, no cursor.
+- Hero is canvas-2D (no WebGL), DPR-capped at 1.75; dynamically imported (`ssr:false`)
+  and mounted on idle, so it never blocks first paint.
 
 ## Content TODOs
 
