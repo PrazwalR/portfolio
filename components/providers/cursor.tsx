@@ -3,11 +3,10 @@
 import { useEffect, useRef, useState } from "react";
 
 /**
- * Targeting-reticle cursor (design-handoff).
- * Ring + 4 ticks + center dot in white, `mix-blend-mode: difference` so it stays
- * legible over the accent-colored hero dot field. Position lerps at --cursor-lerp;
- * grows ×1.7 and rotates --cursor-rotate over interactive elements; contracts on
- * press. Renders nothing on touch or under prefers-reduced-motion.
+ * Soft glow spotlight cursor. A blurred accent light eases after the pointer
+ * (mix-blend-screen so it adds light over the dark UI), brightening + growing
+ * over interactive elements and dimming on press. Position/grow lerp at the
+ * --cursor-* tokens. Renders nothing on touch or under prefers-reduced-motion.
  */
 export function Cursor() {
   const ref = useRef<HTMLDivElement>(null);
@@ -42,8 +41,7 @@ export function Cursor() {
       px = e.clientX;
       py = e.clientY;
       vis = 1;
-      const target = e.target as Element | null;
-      const hit = target?.closest?.(
+      const hit = (e.target as Element | null)?.closest?.(
         "[data-cursor=link],[data-tilt],a,button,input,textarea,[role=button]"
       );
       tGrow = hit ? 1 : 0;
@@ -64,11 +62,11 @@ export function Cursor() {
       ry += (py - ry) * lerp;
       grow += (tGrow - grow) * growLerp;
       down += (tDown - down) * 0.25;
-      const s = (1 + grow * 0.7) * (1 - down * 0.16);
-      el.style.opacity = vis ? "1" : "0";
-      el.style.transform = `translate(${rx}px, ${ry}px) translate(-50%, -50%) rotate(${(
-        grow * 45
-      ).toFixed(2)}deg) scale(${s.toFixed(3)})`;
+      const s = (1 + grow * 0.9) * (1 - down * 0.18);
+      el.style.opacity = vis ? (0.45 + grow * 0.35).toFixed(3) : "0";
+      el.style.transform = `translate(${rx}px, ${ry}px) translate(-50%, -50%) scale(${s.toFixed(
+        3
+      )})`;
       raf = requestAnimationFrame(loop);
     };
     raf = requestAnimationFrame(loop);
@@ -88,15 +86,12 @@ export function Cursor() {
     <div
       ref={ref}
       aria-hidden
-      className="pointer-events-none fixed left-0 top-0 z-[90] h-9 w-9 opacity-0 mix-blend-difference"
-      style={{ willChange: "transform, opacity" }}
-    >
-      <span className="absolute inset-0 rounded-full border border-white" />
-      <span className="absolute left-1/2 top-1/2 h-[3px] w-[3px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-white" />
-      <span className="absolute left-1/2 top-0 h-1.5 w-px -translate-x-1/2 bg-white" />
-      <span className="absolute bottom-0 left-1/2 h-1.5 w-px -translate-x-1/2 bg-white" />
-      <span className="absolute left-0 top-1/2 h-px w-1.5 -translate-y-1/2 bg-white" />
-      <span className="absolute right-0 top-1/2 h-px w-1.5 -translate-y-1/2 bg-white" />
-    </div>
+      className="pointer-events-none fixed left-0 top-0 z-[90] h-14 w-14 rounded-full opacity-0 blur-lg mix-blend-screen"
+      style={{
+        background:
+          "radial-gradient(circle, hsl(var(--accent) / 0.7), hsl(var(--accent) / 0) 70%)",
+        willChange: "transform, opacity",
+      }}
+    />
   );
 }

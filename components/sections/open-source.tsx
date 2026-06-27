@@ -60,7 +60,9 @@ export function OpenSource() {
         </Reveal>
 
         <ul className="mt-8 flex flex-col">
-          {contributions.map((c, i) => (
+          {contributions
+            .filter((c) => c.featured)
+            .map((c, i) => (
             <Reveal key={c.repo} delay={i * 0.03}>
               <li className="group grid gap-4 border-t border-border py-6 last:border-b md:grid-cols-[minmax(0,16rem)_1fr]">
                 <div className="flex flex-col gap-1">

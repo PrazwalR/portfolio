@@ -16,12 +16,15 @@ export interface Contribution {
   summary: string;
   prs: Pr[];
   verify?: boolean;
+  /** show in the curated on-page highlights list (stats still count all) */
+  featured?: boolean;
 }
 
 export const contributions: Contribution[] = [
   {
     org: "rust-lang",
     repo: "rust-lang/rust",
+    featured: true,
     area: "Compiler / trait solver",
     date: "Jun 2026",
     summary:
@@ -33,6 +36,7 @@ export const contributions: Contribution[] = [
   {
     org: "Uniswap",
     repo: "Uniswap/v4-core",
+    featured: true,
     area: "DeFi core pool accounting",
     date: "Mar 2026",
     summary:
@@ -44,6 +48,7 @@ export const contributions: Contribution[] = [
   {
     org: "Foundry",
     repo: "foundry-rs/foundry",
+    featured: true,
     area: "Ethereum tooling (Rust)",
     date: "Jun 2026",
     summary:
@@ -55,6 +60,7 @@ export const contributions: Contribution[] = [
   {
     org: "Aptos",
     repo: "aptos-labs/aptos-core",
+    featured: true,
     area: "Move VM (Rust)",
     date: "Jun 2026",
     summary:

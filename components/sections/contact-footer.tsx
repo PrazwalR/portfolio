@@ -1,7 +1,7 @@
-import { ArrowUpRight, Github, Linkedin, Mail } from "lucide-react";
+import { Github, Linkedin, Mail } from "lucide-react";
 
 import { site } from "@/content/site";
-import { Button, Container, SectionHeading, Separator } from "@/components/ui";
+import { Button, Container, SectionHeading } from "@/components/ui";
 import { Reveal } from "@/components/motion/reveal";
 
 export function ContactFooter() {
@@ -57,22 +57,6 @@ export function ContactFooter() {
             </a>
           </p>
         </Reveal>
-
-        <Separator className="my-12" />
-
-        <div className="flex flex-col items-start justify-between gap-4 text-sm text-muted-foreground sm:flex-row sm:items-center">
-          <p>
-            © {new Date().getFullYear()} {site.name}. Built with Next.js &amp;
-            Tailwind.
-          </p>
-          <a
-            href="/design-system"
-            className="inline-flex items-center gap-1 font-mono text-xs transition-colors hover:text-accent"
-          >
-            Design system
-            <ArrowUpRight className="size-3" />
-          </a>
-        </div>
       </Container>
     </footer>
   );

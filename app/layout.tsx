@@ -23,8 +23,8 @@ const spaceMono = Space_Mono({
   display: "swap",
 });
 
-// TODO: set to the production domain once deployed (used for canonical + OG URLs).
-const SITE_URL = "https://prazwalratti.vercel.app";
+// Production domain (canonical + OG URLs).
+const SITE_URL = "https://prazwal.xyz";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
