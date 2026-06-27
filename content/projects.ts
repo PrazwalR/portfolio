@@ -1,6 +1,5 @@
 /**
  * Featured projects. `stack` entries render as Tag/Chip badges.
- * SigSafe is a placeholder — the CV has no description (see TODO).
  */
 export interface Project {
   name: string;
@@ -31,7 +30,7 @@ export const projects: Project[] = [
     name: "Apiforge",
     tagline: "Production-grade API release CLI",
     description:
-      "Automates the full release pipeline — version bump → Docker → Kubernetes → health checks — with automatic rollback, dry-run, and audit logging. Integrates AWS ECR, Docker Hub, GitHub Releases & Slack.",
+      "Automates the full release pipeline: version bump → Docker → Kubernetes → health checks, with automatic rollback, dry-run, and audit logging. Integrates AWS ECR, Docker Hub, GitHub Releases & Slack.",
     stack: ["Rust", "CLI", "Docker", "Kubernetes", "AWS ECR"],
     href: "https://github.com/PrazwalR/Apiforge",
     year: "2026",
@@ -57,15 +56,5 @@ export const projects: Project[] = [
     stack: ["TypeScript", "Solidity", "AI Agents", "Cross-chain"],
     href: "https://github.com/PrazwalR/LiqX",
     year: "2025",
-  },
-  {
-    name: "SigSafe",
-    // TODO: replace with a real one-line description + accurate stack tags.
-    tagline: "Signature safety tooling",
-    description:
-      "Description coming soon — placeholder card. Add the project summary and stack here.",
-    stack: ["TODO"],
-    href: "https://github.com/PrazwalR/SigSafe",
-    year: "2026",
   },
 ];

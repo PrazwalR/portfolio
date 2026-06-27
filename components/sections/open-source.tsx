@@ -37,7 +37,7 @@ export function OpenSource() {
             eyebrow="Open Source"
             titleId="open-source-title"
             title="Contributions upstream"
-            description="Merged work across compilers, DeFi cores, and protocol tooling — fixing real problems in the systems other builders depend on."
+            description="Merged work across compilers, DeFi cores, and protocol tooling, fixing real problems in the systems other builders depend on."
           />
         </Reveal>
 

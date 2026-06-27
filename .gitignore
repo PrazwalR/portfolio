@@ -35,3 +35,6 @@ yarn-error.log*
 
 # design-handoff bundle (binary artifact; specs already applied to source)
 *.zip
+
+# original full-res source photos (kept locally; cutouts live in /public)
+design-src/

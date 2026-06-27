@@ -4,15 +4,15 @@
  */
 export const site = {
   name: "Prazwal Ratti",
-  role: "Web3 & Backend Developer",
+  role: "Web3 & Backend Engineer",
   location: "Chennai, India",
 
   // Hero
   tagline:
-    "I build at the systems layer — decentralized apps, DeFi tooling, and scalable backends in Rust, Solidity & TypeScript.",
+    "I build at the systems layer: decentralized protocols, DeFi infrastructure, and the backends that keep them honest. Language-agnostic by habit; I reach for whatever the problem actually calls for.",
 
   // About
-  bio: "Web3 and backend developer focused on the systems layer — building decentralized applications, DeFi tooling, and scalable backend services in Rust, Solidity, and TypeScript. Active open-source contributor to major protocols (rust-lang, Uniswap, Foundry), currently researching how to eliminate liquidations in decentralized lending. Builder-first: constantly shipping, experimenting, and contributing upstream.",
+  bio: "Engineer working close to the systems layer: decentralized protocols, DeFi infrastructure, and the backend services that hold them up. I care more about how a system behaves under load and adversaries than which language it happens to be written in, and I pick up new stacks as the work demands. Active open-source contributor across the ecosystem, from low-level language tooling to core DeFi protocols, and currently researching how to remove liquidations from decentralized lending entirely.",
 
   education: {
     school: "Vellore Institute of Technology (VIT), Chennai",
@@ -31,9 +31,10 @@ export const site = {
 
   socials: {
     github: "https://github.com/PrazwalR",
-    // TODO: fill real handles
-    linkedin: "https://www.linkedin.com/in/",
-    x: "https://x.com/",
+    x: "https://x.com/RattiPrazwal",
+    // TODO: real LinkedIn handle (currently a dead link — hidden in the footer
+    // until set; see contact-footer.tsx).
+    linkedin: "",
   },
 } as const;
 
@@ -44,6 +45,5 @@ export const nav = [
   { label: "Experience", href: "#experience" },
   { label: "Skills", href: "#skills" },
   { label: "About", href: "#about" },
-  { label: "Blog", href: "#blog" },
   { label: "Contact", href: "#contact" },
 ] as const;

@@ -4,6 +4,7 @@ import { site } from "@/content/site";
 import { Badge, Button, Container } from "@/components/ui";
 import { HeroBackground } from "@/components/hero/hero-background";
 import { AnimatedName } from "@/components/hero/animated-name";
+import { SpeakerPortrait } from "@/components/hero/speaker-portrait";
 
 export function Hero() {
   return (
@@ -14,7 +15,8 @@ export function Hero() {
     >
       <HeroBackground />
       <Container className="py-section">
-        <div className="max-w-3xl">
+        <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-12">
+          <div className="order-2 max-w-2xl lg:order-1">
           <Badge variant="accent" className="mb-6">
             {site.location}
           </Badge>
@@ -66,6 +68,8 @@ export function Hero() {
               </a>
             </Button>
           </div>
+          </div>
+          <SpeakerPortrait className="order-1 lg:order-2" />
         </div>
       </Container>
     </section>
