@@ -35,8 +35,8 @@ export const projects: Project[] = [
     href: "https://github.com/PrazwalR/Apiforge",
     year: "2026",
     published: {
-      label: "crates.io",
-      href: "https://crates.io/",
+      label: "crates.io · apiforge",
+      href: "https://crates.io/crates/apiforge",
     },
   },
   {
