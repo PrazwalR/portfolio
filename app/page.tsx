@@ -5,6 +5,7 @@ import { OpenSource } from "@/components/sections/open-source";
 import { Experience } from "@/components/sections/experience";
 import { Skills } from "@/components/sections/skills";
 import { About } from "@/components/sections/about";
+import { Blog } from "@/components/sections/blog";
 import { ContactFooter } from "@/components/sections/contact-footer";
 
 export default function Home() {
@@ -18,6 +19,7 @@ export default function Home() {
         <Experience />
         <Skills />
         <About />
+        <Blog />
       </main>
       <ContactFooter />
     </>

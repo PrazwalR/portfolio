@@ -48,33 +48,44 @@ export function Blog() {
             </Card>
           </Reveal>
         ) : (
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {posts.map((post, i) => (
-              <Reveal key={post.slug} delay={i * 0.05}>
-                <Card interactive className="group h-full">
-                  <CardHeader>
-                    <span className="font-mono text-xs text-muted-foreground">
-                      {post.date}
-                    </span>
-                    <CardTitle className="flex items-center gap-1.5 text-lg">
-                      <Link
-                        href={`/blog/${post.slug}`}
-                        className="after:absolute after:inset-0"
-                      >
-                        {post.title}
-                      </Link>
-                      <ArrowUpRight className="size-4 text-muted-foreground transition-colors group-hover:text-accent" />
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-sm leading-relaxed text-muted-foreground">
-                      {post.excerpt}
-                    </p>
-                  </CardContent>
-                </Card>
-              </Reveal>
-            ))}
-          </div>
+          <>
+            <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {posts.map((post, i) => (
+                <Reveal key={post.slug} delay={i * 0.05}>
+                  <Card interactive className="group h-full">
+                    <CardHeader>
+                      <span className="font-mono text-xs text-muted-foreground">
+                        {post.date}
+                      </span>
+                      <CardTitle className="flex items-start gap-1.5 text-lg">
+                        <Link
+                          href={`/blog/${post.slug}`}
+                          className="after:absolute after:inset-0"
+                        >
+                          {post.title}
+                        </Link>
+                        <ArrowUpRight className="mt-1 size-4 shrink-0 text-muted-foreground transition-colors group-hover:text-accent" />
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <p className="text-sm leading-relaxed text-muted-foreground">
+                        {post.excerpt}
+                      </p>
+                    </CardContent>
+                  </Card>
+                </Reveal>
+              ))}
+            </div>
+            <Reveal delay={0.1}>
+              <Link
+                href="/blog"
+                className="mt-8 inline-flex items-center gap-1.5 font-mono text-sm text-muted-foreground transition-colors hover:text-accent"
+              >
+                All writing
+                <ArrowUpRight className="size-4" />
+              </Link>
+            </Reveal>
+          </>
         )}
       </Container>
     </section>
