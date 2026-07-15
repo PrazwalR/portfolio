@@ -5,7 +5,7 @@
  */
 export interface Achievement {
   title: string;
-  kind: "Work" | "Hackathon" | "Speaking" | "Award";
+  kind: "Hackathon" | "Speaking" | "Award";
   event: string;
   location?: string;
   date: string;
@@ -18,30 +18,6 @@ export interface Achievement {
 }
 
 export const achievements: Achievement[] = [
-  {
-    title: "Blockchain Developer Intern",
-    kind: "Work",
-    event: "Comet&Co",
-    location: "Remote",
-    date: "Feb 2026 to Mar 2026",
-    blurb:
-      "Blockchain Developer Intern at Comet&Co (remote). Audited smart contracts for security and correctness, handled contract migration, testing, and deployment across multiple blockchains, and operated and monitored network nodes.",
-    highlights: [
-      "Audited smart contracts for security and correctness.",
-      "Handled contract migration, testing, and deployment across multiple blockchains.",
-      "Operated and monitored network nodes.",
-    ],
-    tags: [
-      "Solidity",
-      "Rust",
-      "Foundry",
-      "TypeScript",
-      "ethers.js",
-      "Ethereum/EVM",
-      "Solana",
-    ],
-    images: [],
-  },
   {
     title: "Workshop Speaker",
     kind: "Speaking",

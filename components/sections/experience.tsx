@@ -1,16 +1,11 @@
-import { ArrowUpRight, Briefcase, Mic, Sparkles, Trophy } from "lucide-react";
+import { ArrowUpRight, Mic, Sparkles, Trophy } from "lucide-react";
 
 import { achievements } from "@/content/achievements";
 import { Badge, Card, Container, SectionHeading } from "@/components/ui";
 import { EventImage } from "@/components/ui/event-image";
 import { Reveal } from "@/components/motion/reveal";
 
-const kindIcon = {
-  Work: Briefcase,
-  Hackathon: Trophy,
-  Speaking: Mic,
-  Award: Sparkles,
-} as const;
+const kindIcon = { Hackathon: Trophy, Speaking: Mic, Award: Sparkles } as const;
 
 export function Experience() {
   return (
@@ -24,8 +19,8 @@ export function Experience() {
           <SectionHeading
             eyebrow="Experience"
             titleId="experience-title"
-            title="Work, hackathons & speaking"
-            description="Internships, wins, builds, and stage time from the Web3 trenches."
+            title="Hackathons & speaking"
+            description="Wins, builds, and stage time from the Web3 trenches."
           />
         </Reveal>
 
