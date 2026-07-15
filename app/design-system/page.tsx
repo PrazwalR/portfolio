@@ -20,6 +20,7 @@ export const metadata: Metadata = {
   title: "Design System",
   description:
     "Living style guide — every design token and UI primitive on one page.",
+  robots: { index: false, follow: false },
 };
 
 /* ------------------------------------------------------------------ */
@@ -123,6 +124,7 @@ export default function DesignSystemPage() {
 
         <div className="mt-8">
           <SectionHeading
+            as="h1"
             eyebrow="Living Style Guide"
             title="Design System"
             description="Every token and primitive on one page. Tokens live in app/globals.css and are mirrored into tailwind.config.ts — the single source of truth this page renders."

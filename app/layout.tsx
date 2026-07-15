@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Space_Grotesk, Space_Mono } from "next/font/google";
 
 import "./globals.css";
-import { site } from "@/content/site";
+import { site, SITE_URL } from "@/content/site";
 import { LenisProvider } from "@/components/providers/lenis-provider";
 import { Cursor } from "@/components/providers/cursor";
 import { Interactions } from "@/components/providers/interactions";
@@ -22,9 +22,6 @@ const spaceMono = Space_Mono({
   variable: "--font-space-mono",
   display: "swap",
 });
-
-// Production domain (canonical + OG URLs).
-const SITE_URL = "https://prazwal.xyz";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),

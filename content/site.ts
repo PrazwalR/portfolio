@@ -2,6 +2,10 @@
  * Site-wide content + identity. Editable single source for name, copy, links.
  * (Public-facing contact shows both emails per the owner's choice.)
  */
+
+/** Production domain — canonical URLs, sitemap/robots/RSS, and JSON-LD all read this. */
+export const SITE_URL = "https://prazwal.xyz";
+
 export const site = {
   name: "Prazwal Ratti",
   role: "Web3 & Backend Engineer",

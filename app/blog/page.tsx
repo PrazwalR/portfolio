@@ -3,6 +3,8 @@ import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 
 import { posts } from "@/content/blog";
+import { SiteHeader } from "@/components/site-header";
+import { ContactFooter } from "@/components/sections/contact-footer";
 import {
   Badge,
   Card,
@@ -16,22 +18,26 @@ import {
 export const metadata: Metadata = {
   title: "Blog",
   description: "Notes on Rust, DeFi, and building at the systems layer.",
+  alternates: { types: { "application/rss+xml": "/blog/rss.xml" } },
 };
 
 export default function BlogIndexPage() {
   return (
-    <main className="py-16">
+    <>
+      <SiteHeader />
+      <main className="pb-16 pt-32">
       <Container>
         <Link
           href="/"
-          className="inline-flex items-center gap-1.5 font-mono text-xs text-muted-foreground transition-colors hover:text-accent"
+          className="inline-flex items-center gap-1.5 rounded-sm font-mono text-xs text-muted-foreground transition-colors hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
         >
           <ArrowLeft className="size-3.5" />
-          Back to site
+          Home
         </Link>
 
         <div className="mt-8">
           <SectionHeading
+            as="h1"
             eyebrow="Writing"
             title="Blog"
             description="Notes on Rust, DeFi, and building at the systems layer."
@@ -76,6 +82,8 @@ export default function BlogIndexPage() {
           </div>
         )}
       </Container>
-    </main>
+      </main>
+      <ContactFooter />
+    </>
   );
 }

@@ -1,30 +1,38 @@
 import { ArrowUpRight } from "lucide-react";
 
-import { contributions } from "@/content/open-source";
+import { contributions, type ContributionLang } from "@/content/open-source";
 import { Container, SectionHeading } from "@/components/ui";
 import { Counter } from "@/components/ui/counter";
 import { Reveal } from "@/components/motion/reveal";
 
-export function OpenSource() {
-  const stats = [
-    {
-      value: contributions.reduce((sum, c) => sum + c.prs.length, 0),
-      label: "PRs merged",
-    },
-    { value: contributions.length, label: "Orgs" },
-    {
-      value: new Set(
-        contributions.flatMap((c) =>
-          c.prs.map((p) => {
-            const m = p.href.match(/github\.com\/([^/]+\/[^/]+)/);
-            return m ? m[1] : p.href;
-          })
-        )
-      ).size,
-      label: "Repos",
-    },
-  ];
+const allPrs = contributions.flatMap((c) => c.prs);
+const totalPrs = allPrs.length;
+const totalOrgs = contributions.length;
+const totalMerged = allPrs.filter((pr) => pr.merged).length;
 
+const stats = [
+  // Rounded down so the label ("20+") never overclaims as new PRs land.
+  { value: Math.floor(totalPrs / 10) * 10, suffix: "+", label: "PRs opened" },
+  { value: totalOrgs, suffix: "", label: "Organizations" },
+  { value: totalMerged, suffix: "", label: "Merged upstream" },
+];
+
+// Fixed order so the primary languages the role cares about lead the grid.
+const LANG_ORDER: ContributionLang[] = [
+  "Rust",
+  "Solidity",
+  "Go",
+  "TypeScript",
+  "Python",
+  "Java",
+];
+
+const groups = LANG_ORDER.map((lang) => ({
+  lang,
+  items: contributions.filter((c) => c.lang === lang),
+})).filter((g) => g.items.length > 0);
+
+export function OpenSource() {
   return (
     <section
       id="open-source"
@@ -37,7 +45,7 @@ export function OpenSource() {
             eyebrow="Open Source"
             titleId="open-source-title"
             title="Contributions upstream"
-            description="Merged work across compilers, DeFi cores, and protocol tooling, fixing real problems in the systems other builders depend on."
+            description="Contributions across compilers, DeFi cores, and protocol tooling: fixing real problems in the systems other builders depend on."
           />
         </Reveal>
 
@@ -49,7 +57,7 @@ export function OpenSource() {
                 className="flex flex-col items-center gap-1 border-l border-border p-6 text-center first:border-l-0 sm:p-7"
               >
                 <dd className="text-4xl font-semibold tracking-tight text-accent sm:text-5xl">
-                  <Counter to={s.value} />
+                  <Counter to={s.value} suffix={s.suffix} />
                 </dd>
                 <dt className="font-mono text-xs uppercase tracking-[0.16em] text-muted-foreground">
                   {s.label}
@@ -59,44 +67,46 @@ export function OpenSource() {
           </dl>
         </Reveal>
 
-        <ul className="mt-8 flex flex-col">
-          {contributions
-            .filter((c) => c.featured)
-            .map((c, i) => (
-            <Reveal key={c.repo} delay={i * 0.03}>
-              <li className="group grid gap-4 border-t border-border py-6 last:border-b md:grid-cols-[minmax(0,16rem)_1fr]">
-                <div className="flex flex-col gap-1">
-                  <span className="font-mono text-sm font-medium text-foreground">
-                    {c.repo}
-                  </span>
-                  <span className="text-sm text-muted-foreground">{c.area}</span>
-                  <span className="font-mono text-xs text-muted-foreground/70">
-                    {c.date}
-                  </span>
-                </div>
-                <div className="flex flex-col gap-3">
-                  <p className="text-balance leading-relaxed text-muted-foreground">
-                    {c.summary}
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    {c.prs.map((pr) => (
-                      <a
-                        key={pr.href}
-                        href={pr.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 rounded-md border border-border bg-muted px-2.5 py-0.5 font-mono text-xs text-muted-foreground transition-colors hover:border-accent/40 hover:text-accent"
-                      >
-                        {pr.label}
-                        <ArrowUpRight className="size-3" />
-                      </a>
-                    ))}
-                  </div>
-                </div>
-              </li>
+        <div className="mt-12 grid gap-x-10 gap-y-10 sm:grid-cols-2">
+          {groups.map((group, gi) => (
+            <Reveal key={group.lang} delay={gi * 0.04}>
+              <h3 className="font-mono text-xs font-medium uppercase tracking-[0.16em] text-accent">
+                {group.lang}
+              </h3>
+              <ul className="mt-4 flex flex-col gap-5">
+                {group.items.map((c) => (
+                  <li key={c.repo}>
+                    <div className="flex flex-wrap items-baseline gap-x-2">
+                      <span className="font-mono text-sm font-medium text-foreground">
+                        {c.org}
+                      </span>
+                      <span className="text-xs text-muted-foreground/70">
+                        {c.area}
+                      </span>
+                    </div>
+                    <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
+                      {c.summary}
+                    </p>
+                    <div className="mt-2 flex flex-wrap gap-1.5">
+                      {c.prs.map((pr) => (
+                        <a
+                          key={pr.href}
+                          href={pr.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1 rounded-md border border-border bg-muted px-2 py-0.5 font-mono text-xs text-muted-foreground transition-colors hover:border-accent/40 hover:text-accent"
+                        >
+                          {pr.label}
+                          <ArrowUpRight className="size-3" />
+                        </a>
+                      ))}
+                    </div>
+                  </li>
+                ))}
+              </ul>
             </Reveal>
           ))}
-        </ul>
+        </div>
       </Container>
     </section>
   );

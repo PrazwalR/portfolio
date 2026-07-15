@@ -1,6 +1,9 @@
 /**
  * SectionHeading — eyebrow (mono, accent) + display title + optional description.
  * Renders a semantic <h2> by default; pass `id` to anchor section landmarks.
+ * Pass `as="h1"` on standalone pages (e.g. /blog) that have no other h1 —
+ * the homepage's h1 is the Hero name, so every in-page SectionHeading there
+ * stays h2.
  */
 import * as React from "react";
 
@@ -13,6 +16,7 @@ interface SectionHeadingProps
   description?: React.ReactNode;
   titleId?: string;
   align?: "left" | "center";
+  as?: "h1" | "h2";
 }
 
 function SectionHeading({
@@ -21,6 +25,7 @@ function SectionHeading({
   description,
   titleId,
   align = "left",
+  as: Heading = "h2",
   className,
   ...props
 }: SectionHeadingProps) {
@@ -39,12 +44,12 @@ function SectionHeading({
           {eyebrow}
         </span>
       ) : null}
-      <h2
+      <Heading
         id={titleId}
         className="max-w-3xl text-balance text-3xl font-semibold tracking-tight text-foreground sm:text-4xl"
       >
         {title}
-      </h2>
+      </Heading>
       {description ? (
         <p className="max-w-2xl text-balance text-base leading-relaxed text-muted-foreground">
           {description}

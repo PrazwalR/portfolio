@@ -14,6 +14,15 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    name: "agentctl",
+    tagline: "Policy & observability layer for autonomous AI-agent payments",
+    description:
+      "Sits between an agent and its wallet, enforces spending policy, and produces a tamper-evident, on-chain-anchored audit trail for every payment. Three-layer decision engine (deterministic policy + anomaly detection + LLM intent reconciliation → allow/escalate/block), Merkle-batched audit log, OpenTelemetry instrumentation.",
+    stack: ["TypeScript", "Solidity", "Rust"],
+    href: "https://github.com/PrazwalR/agentct1",
+    year: "2026",
+  },
+  {
     name: "SwapKit",
     tagline: "Intent-based liquidity SDK",
     description:
