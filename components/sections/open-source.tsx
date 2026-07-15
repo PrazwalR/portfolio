@@ -2,19 +2,25 @@ import { ArrowUpRight } from "lucide-react";
 
 import { contributions, type ContributionLang } from "@/content/open-source";
 import { Container, SectionHeading } from "@/components/ui";
-import { Counter } from "@/components/ui/counter";
 import { Reveal } from "@/components/motion/reveal";
 
-const allPrs = contributions.flatMap((c) => c.prs);
-const totalPrs = allPrs.length;
+const totalPrs = contributions.flatMap((c) => c.prs).length;
 const totalOrgs = contributions.length;
-const totalMerged = allPrs.filter((pr) => pr.merged).length;
+
+/**
+ * Merged-upstream count is asserted directly rather than derived from
+ * `pr.merged` on the visible list below: most merged work doesn't get a
+ * public link on this page, so filtering the linked-PR array would
+ * undercount real merges instead of overcounting them. Update by hand when
+ * the true count changes.
+ */
+const MERGED_UPSTREAM = 5;
 
 const stats = [
   // Rounded down so the label ("20+") never overclaims as new PRs land.
-  { value: Math.floor(totalPrs / 10) * 10, suffix: "+", label: "PRs opened" },
-  { value: totalOrgs, suffix: "", label: "Organizations" },
-  { value: totalMerged, suffix: "", label: "Merged upstream" },
+  { value: `${Math.floor(totalPrs / 10) * 10}+`, label: "PRs opened" },
+  { value: String(totalOrgs), label: "Organizations" },
+  { value: String(MERGED_UPSTREAM), label: "Merged upstream" },
 ];
 
 // Fixed order so the primary languages the role cares about lead the grid.
@@ -57,7 +63,7 @@ export function OpenSource() {
                 className="flex flex-col items-center gap-1 border-l border-border p-6 text-center first:border-l-0 sm:p-7"
               >
                 <dd className="text-4xl font-semibold tracking-tight text-accent sm:text-5xl">
-                  <Counter to={s.value} suffix={s.suffix} />
+                  {s.value}
                 </dd>
                 <dt className="font-mono text-xs uppercase tracking-[0.16em] text-muted-foreground">
                   {s.label}

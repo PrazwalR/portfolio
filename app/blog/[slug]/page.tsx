@@ -7,7 +7,7 @@ import { ArrowLeft, Home } from "lucide-react";
 
 import { posts } from "@/content/blog";
 import { site, SITE_URL } from "@/content/site";
-import { Badge, Container } from "@/components/ui";
+import { Badge, Container, HomeLink } from "@/components/ui";
 import { PostBody } from "@/components/blog/post-body";
 import { ScrollToTop } from "@/components/blog/scroll-to-top";
 import { SiteHeader } from "@/components/site-header";
@@ -93,13 +93,10 @@ export default async function BlogPostPage({
                 <ArrowLeft className="size-3.5" />
                 Back to blog
               </Link>
-              <Link
-                href="/"
-                className="inline-flex items-center gap-1.5 font-mono text-xs text-muted-foreground transition-colors hover:text-accent"
-              >
+              <HomeLink className="inline-flex items-center gap-1.5 font-mono text-xs text-muted-foreground transition-colors hover:text-accent">
                 <Home className="size-3.5" />
                 Home
-              </Link>
+              </HomeLink>
             </div>
 
             <div className="mt-8 flex flex-wrap items-center gap-x-3 gap-y-2 font-mono text-xs text-muted-foreground">

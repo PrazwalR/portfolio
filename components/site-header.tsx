@@ -6,7 +6,7 @@ import { Menu, X } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { nav, site } from "@/content/site";
-import { Button, Container } from "@/components/ui";
+import { Button, Container, HomeLink } from "@/components/ui";
 
 /**
  * Nav items are homepage section anchors ("#work"). Prefix with "/" so they
@@ -40,13 +40,12 @@ export function SiteHeader() {
       )}
     >
       <Container className="flex h-16 items-center justify-between gap-4">
-        <Link
-          href="/"
+        <HomeLink
           className="rounded-sm font-mono text-sm font-semibold tracking-tight text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
           onClick={() => setOpen(false)}
         >
           <span className="text-accent">{"//"}</span> {site.name}
-        </Link>
+        </HomeLink>
 
         <nav
           aria-label="Primary"
@@ -88,13 +87,12 @@ export function SiteHeader() {
             aria-label="Mobile"
             className="flex flex-col gap-1 border-t border-border py-3"
           >
-            <Link
-              href="/"
+            <HomeLink
               onClick={() => setOpen(false)}
               className="rounded-md px-2 py-2 text-sm font-medium text-foreground transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-inset"
             >
               Home
-            </Link>
+            </HomeLink>
             {nav.map((item) => (
               <Link
                 key={item.href}

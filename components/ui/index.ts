@@ -14,5 +14,6 @@ export {
 } from "./card";
 export { Badge, badgeVariants, type BadgeProps } from "./badge";
 export { Container } from "./container";
+export { HomeLink } from "./home-link";
 export { SectionHeading } from "./section-heading";
 export { Separator } from "./separator";

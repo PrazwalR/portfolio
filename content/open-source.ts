@@ -2,8 +2,12 @@
  * Open-source contributions. Each entry links to its PR(s).
  *
  * `merged` lives on the individual PR (not the contribution) since a given org
- * entry can mix merged and still-open PRs. Stats in the section component are
- * derived from this array — don't hardcode counts elsewhere.
+ * entry can mix merged and still-open PRs — informational per-PR metadata,
+ * checked against the GitHub API. The "PRs opened" and "Organizations" stats
+ * in the section component derive from this array's length; "Merged upstream"
+ * does NOT (see MERGED_UPSTREAM there) since most of the user's real merged
+ * work doesn't have a public link on this page — summing `merged` here would
+ * undercount, not overcount.
  *
  * `lang` is the primary language/stack of the *contribution itself* (verified
  * against each repo's actual language where possible), used purely to group
@@ -80,7 +84,6 @@ export const contributions: Contribution[] = [
       {
         label: "#596",
         href: "https://github.com/get-convex/convex-backend/pull/596",
-        merged: true,
       },
     ],
     verify: true,
