@@ -103,7 +103,7 @@ export function OpenSource() {
                         href={pr.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className={`inline-flex items-center gap-1.5 rounded-md border px-2.5 py-0.5 font-mono text-xs transition-colors ${
+                        className={`inline-flex items-center gap-1.5 rounded-md border px-2.5 py-0.5 font-mono text-xs transition-[color,border-color,transform] duration-fast ease-out hover:-translate-y-px ${
                           pr.merged
                             ? "border-accent/30 bg-accent/10 text-accent hover:border-accent/60"
                             : "border-border bg-muted text-muted-foreground hover:border-accent/40 hover:text-accent"

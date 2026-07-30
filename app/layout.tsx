@@ -4,6 +4,7 @@ import { Space_Grotesk, Space_Mono } from "next/font/google";
 import "./globals.css";
 import { site, SITE_URL } from "@/content/site";
 import { LenisProvider } from "@/components/providers/lenis-provider";
+import { ScrollProgress } from "@/components/providers/scroll-progress";
 import { Cursor } from "@/components/providers/cursor";
 import { Interactions } from "@/components/providers/interactions";
 
@@ -75,6 +76,7 @@ export default function RootLayout({
         >
           Skip to content
         </a>
+        <ScrollProgress />
         <LenisProvider>{children}</LenisProvider>
         <Cursor />
         <Interactions />
