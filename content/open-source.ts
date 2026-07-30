@@ -1,7 +1,8 @@
 /**
- * Open-source contributions — top 5 by name recognition, not the full list.
- * Each entry links to its PR(s); `merged` is checked against the GitHub API
- * (only foundry-rs/foundry #15142 is currently confirmed merged).
+ * Open-source contributions — top 5 mirroring the resume, plus an
+ * "additional contributions" org list. Each entry links to its PR(s);
+ * `merged` is checked against the GitHub API (only foundry-rs/foundry
+ * #15142 is currently confirmed merged).
  */
 export interface Pr {
   label: string;
@@ -15,38 +16,20 @@ export interface Contribution {
   area: string;
   date: string;
   summary: string;
+  /** security-engineering focus chips rendered beside the summary */
+  focus: string[];
   prs: Pr[];
 }
 
 export const contributions: Contribution[] = [
   {
-    org: "rust-lang",
-    repo: "rust-lang/rust",
-    area: "Compiler / trait solver",
-    date: "2026",
-    summary:
-      "Fix detecting cyclic subtypes during generalization in the next-generation trait solver.",
-    prs: [
-      { label: "#157786", href: "https://github.com/rust-lang/rust/pull/157786" },
-    ],
-  },
-  {
-    org: "Uniswap",
-    repo: "Uniswap/v4-core",
-    area: "DeFi core pool accounting",
-    date: "2026",
-    summary: "Added fee-growth direction assertions to the core pool-accounting tests.",
-    prs: [
-      { label: "#1017", href: "https://github.com/Uniswap/v4-core/pull/1017" },
-    ],
-  },
-  {
     org: "Foundry",
     repo: "foundry-rs/foundry",
-    area: "Ethereum tooling",
+    area: "Ethereum tooling · Rust",
     date: "2026",
     summary:
-      "Added support for running `forge verify-bytecode` without a block explorer.",
+      "Enabled `forge verify-bytecode` to run without a block explorer, so deployed bytecode can be verified against source in trust-minimized setups.",
+    focus: ["Bytecode verification", "Supply-chain trust"],
     prs: [
       {
         label: "#15142",
@@ -56,11 +39,47 @@ export const contributions: Contribution[] = [
     ],
   },
   {
+    org: "Convex",
+    repo: "Convex-Dev/convex",
+    area: "Decentralised platform · Java",
+    date: "2026",
+    summary:
+      "Hardened the Postgres wire-protocol decoder against malformed pre-auth frames, closing crash paths triggered by untrusted network input.",
+    focus: ["Input validation", "Protocol hardening"],
+    prs: [
+      {
+        label: "#596",
+        href: "https://github.com/Convex-Dev/convex/pull/596",
+      },
+    ],
+  },
+  {
+    org: "Cosmos",
+    repo: "cosmos/cosmos-sdk",
+    area: "Blockchain framework · Go",
+    date: "2026",
+    summary:
+      "Pruned stale commit-info metadata and made `BaseApp.Close` idempotent, tightening state hygiene and shutdown safety for chains built on the SDK.",
+    focus: ["State integrity", "Lifecycle safety"],
+    prs: [
+      {
+        label: "#26561",
+        href: "https://github.com/cosmos/cosmos-sdk/pull/26561",
+      },
+      {
+        label: "#26562",
+        href: "https://github.com/cosmos/cosmos-sdk/pull/26562",
+      },
+    ],
+  },
+  {
     org: "Aptos",
     repo: "aptos-labs/aptos-core",
-    area: "Move VM",
+    area: "Move VM · Rust",
     date: "2026",
-    summary: "Validation of Move Identifier during deserialization for safer module loading.",
+    summary:
+      "Validated Move `Identifier` during deserialization for safer module loading — malformed identifiers are rejected before they reach the VM.",
+    focus: ["Deserialization safety", "VM security"],
     prs: [
       { label: "#20056", href: "https://github.com/aptos-labs/aptos-core/pull/20056" },
     ],
@@ -71,11 +90,26 @@ export const contributions: Contribution[] = [
     area: "Node robustness & CCTP",
     date: "2026",
     summary:
-      "Node DoS hardening on arc-node; added ITokenMessenger interfaces and minFee fuzz invariants to the Cross-Chain Transfer Protocol contracts.",
+      "Hardened node robustness against streaming-overflow DoS, spammer panics, and metrics drift; added ITokenMessenger interfaces and minFee fuzz invariants to the Cross-Chain Transfer Protocol contracts.",
+    focus: ["DoS hardening", "Fuzz invariants"],
     prs: [
       { label: "arc-node #161", href: "https://github.com/circlefin/arc-node/pull/161" },
       { label: "cctp #108", href: "https://github.com/circlefin/evm-cctp-contracts/pull/108" },
       { label: "cctp #109", href: "https://github.com/circlefin/evm-cctp-contracts/pull/109" },
     ],
   },
+];
+
+/** Orgs with further merged/open contributions, listed as a compact strip. */
+export const additionalContributions: string[] = [
+  "Optimism",
+  "Compound",
+  "Hyperliquid",
+  "rust-lang/rust",
+  "Uniswap v4",
+  "Noir",
+  "Oasis",
+  "Fetch.ai",
+  "Stellar",
+  "Keplr",
 ];

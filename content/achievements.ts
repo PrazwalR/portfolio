@@ -14,6 +14,8 @@ export interface Achievement {
   tags?: string[];
   /** first image is the card hero; the rest render as a thumbnail row */
   images: string[];
+  /** CSS object-position for the hero crop, e.g. "75% center" when the subject sits off-center */
+  imagePosition?: string;
   href?: string;
 }
 
@@ -64,6 +66,7 @@ export const achievements: Achievement[] = [
       "Confidential Computing",
     ],
     images: ["/achievements/defy-2026.jpg"],
+    imagePosition: "78% center",
   },
   {
     title: "DataChain at ETHGlobal New Delhi",

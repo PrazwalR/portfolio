@@ -38,6 +38,11 @@ export function Experience() {
                       src={a.images[0]}
                       alt={a.title}
                       className="absolute inset-0 h-full w-full object-cover"
+                      style={
+                        a.imagePosition
+                          ? { objectPosition: a.imagePosition }
+                          : undefined
+                      }
                     />
                   </div>
 

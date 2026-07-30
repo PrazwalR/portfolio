@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, type CSSProperties } from "react";
 import Image from "next/image";
 
 /**
@@ -16,6 +16,7 @@ export function EventImage({
   src,
   alt,
   className,
+  style,
   fill = true,
   width,
   height,
@@ -24,6 +25,7 @@ export function EventImage({
   src: string;
   alt: string;
   className?: string;
+  style?: CSSProperties;
   fill?: boolean;
   width?: number;
   height?: number;
@@ -54,6 +56,7 @@ export function EventImage({
       fill
       sizes={sizes ?? "(min-width: 768px) 22rem, 100vw"}
       className={className}
+      style={style}
       onError={() => setErrored(true)}
     />
   ) : (
@@ -63,6 +66,7 @@ export function EventImage({
       width={width}
       height={height}
       className={className}
+      style={style}
       onError={() => setErrored(true)}
     />
   );
