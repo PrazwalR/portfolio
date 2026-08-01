@@ -54,21 +54,17 @@ export const contributions: Contribution[] = [
     ],
   },
   {
-    org: "Cosmos",
-    repo: "cosmos/cosmos-sdk",
-    area: "Blockchain framework · Go",
+    org: "Oasis",
+    repo: "oasisprotocol/oasis-sdk",
+    area: "Confidential runtime · Rust",
     date: "2026",
     summary:
-      "Pruned stale commit-info metadata and made `BaseApp.Close` idempotent, tightening state hygiene and shutdown safety for chains built on the SDK.",
-    focus: ["State integrity", "Lifecycle safety"],
+      "Fixed the ROFL scheduler's `domain_verification_token` finalizing into an empty digest — identical tokens across domains — closing a cross-tenant custom-domain takeover and TLS MITM vector.",
+    focus: ["Domain verification", "MITM prevention"],
     prs: [
       {
-        label: "#26561",
-        href: "https://github.com/cosmos/cosmos-sdk/pull/26561",
-      },
-      {
-        label: "#26562",
-        href: "https://github.com/cosmos/cosmos-sdk/pull/26562",
+        label: "#2479",
+        href: "https://github.com/oasisprotocol/oasis-sdk/pull/2479",
       },
     ],
   },
@@ -108,7 +104,7 @@ export const additionalContributions: string[] = [
   "rust-lang/rust",
   "Uniswap v4",
   "Noir",
-  "Oasis",
+  "Cosmos",
   "Fetch.ai",
   "Stellar",
   "Keplr",

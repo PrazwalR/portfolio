@@ -43,8 +43,7 @@ export function About() {
                   <p className="text-sm text-muted-foreground">
                     {education.degree}
                   </p>
-                  <div className="mt-2 flex items-center justify-between font-mono text-xs text-muted-foreground/80">
-                    <span>{education.detail}</span>
+                  <div className="mt-2 font-mono text-xs text-muted-foreground/80">
                     <span>{education.period}</span>
                   </div>
                 </div>

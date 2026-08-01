@@ -21,7 +21,6 @@ export const site = {
   education: {
     school: "Vellore Institute of Technology (VIT), Chennai",
     degree: "B.Tech, Computer Science (Core)",
-    detail: "CGPA 8.10 / 10",
     period: "2023 – 2027",
   },
 
