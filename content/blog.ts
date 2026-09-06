@@ -14,6 +14,15 @@ export interface Post {
 export const posts: Post[] = [
   {
     title:
+      "I Built a Hook to Charge Arbitrageurs More. For Three Weeks It Charged Them Less.",
+    slug: "assay-adverse-selection-hook",
+    excerpt:
+      "Assay prices adverse selection per swap instead of per pool — until an audit found the reference refreshing one block too late, quietly handing the exact swap it exists to charge a discount instead.",
+    date: "2026-08-15",
+    tags: ["Solidity", "Uniswap v4", "DeFi", "Oracles"],
+  },
+  {
+    title:
       "I Got Tired of Babysitting Releases, So I Built a CLI That Doesn't Need Me",
     slug: "apiforge-release-cli",
     excerpt:

@@ -14,13 +14,17 @@ export interface Project {
 
 export const projects: Project[] = [
   {
-    name: "agentctl",
-    tagline: "Policy & observability layer for autonomous AI-agent payments",
+    name: "Assay",
+    tagline: "Per-swap adverse-selection pricing for Uniswap v4",
     description:
-      "Sits between an agent and its wallet, enforces spending policy, and produces a tamper-evident, on-chain-anchored audit trail for every payment. Three-layer decision engine (deterministic policy + anomaly detection + LLM intent reconciliation → allow/escalate/block), Merkle-batched audit log, OpenTelemetry instrumentation.",
-    stack: ["TypeScript", "Solidity", "Rust"],
-    href: "https://github.com/PrazwalR/agentct1",
+      "A Uniswap v4 hook that prices adverse selection per swap rather than per pool: fee scales with how much of a live Chainlink/pool price gap that specific swap closes, so arbitrage is charged and ordinary flow is quoted near the base fee. Reference-deviation cap and sequencer-halt detection guard the oracle path; 193 tests spanning unit, invariant, and live-fork suites against the deployed contract. Source-verified on Base Sepolia, unaudited.",
+    stack: ["Solidity", "Uniswap v4", "Foundry", "TypeScript", "Chainlink"],
+    href: "https://github.com/PrazwalR/Assay",
     year: "2026",
+    published: {
+      label: "Live · assay.prazwal.xyz",
+      href: "https://assay.prazwal.xyz/",
+    },
   },
   {
     name: "SwapKit",
@@ -47,15 +51,6 @@ export const projects: Project[] = [
       label: "crates.io · apiforge",
       href: "https://crates.io/crates/apiforge",
     },
-  },
-  {
-    name: "Tend",
-    tagline: "Autonomous Uniswap v4 LP manager",
-    description:
-      "Monitors a liquidity position, detects out-of-range drift, and rebalances with no manual intervention. Written in async Rust with on-chain price monitoring and safe, gas-aware transaction handling.",
-    stack: ["Rust", "Async", "Uniswap v4", "On-chain"],
-    href: "https://github.com/PrazwalR/Tend",
-    year: "2026",
   },
   {
     name: "LiqX",
