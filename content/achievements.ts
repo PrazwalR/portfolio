@@ -21,6 +21,22 @@ export interface Achievement {
 
 export const achievements: Achievement[] = [
   {
+    title: "Assay Graduated UHI10 with a $1,500 Developer Grant",
+    kind: "Award",
+    event: "Uniswap Hookathon Incubator (UHI10) · Atrium Academy",
+    date: "Sep 2026",
+    blurb:
+      "Assay, a Uniswap v4 hook that prices adverse selection per swap instead of per pool, graduated Atrium Academy's Uniswap Hookathon Incubator (UHI10) with a $1,500 Developer Grant. Demo day was live: the hook has now priced 29 real swaps on Base Sepolia, from 1.00 to 98.10 basis points, same pool and same reference, priced entirely by which direction you trade.",
+    highlights: [
+      "201 tests, 100% line coverage, deployed bytecode verified byte-identical to source.",
+      "Still unaudited, testnet only — the adverse-selection gate still doesn't pass, and I said so on stage. The grant isn't for having solved DeFi's oldest pricing problem, it's for building something real enough to be honest about.",
+      "Live app: assay.prazwal.xyz · Code: github.com/PrazwalR/Assay",
+    ],
+    tags: ["Uniswap v4", "Solidity", "DeFi", "Oracles", "Atrium Academy"],
+    images: ["/achievements/uhi10-assay.jpg"],
+    href: "https://www.youtube.com/live/t63rAO-5fdY",
+  },
+  {
     title: "Workshop Speaker",
     kind: "Speaking",
     event: "GDG on Campus VIT Chennai",
