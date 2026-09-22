@@ -13,7 +13,7 @@ export const site = {
 
   // Hero
   tagline:
-    "I build at the systems layer: decentralized protocols, DeFi infrastructure, and the backends that keep them honest. Language-agnostic by habit; I reach for whatever the problem actually calls for.",
+    "I build at the systems layer: decentralized protocols, DeFi infrastructure, and the backends that keep them honest.",
 
   // About
   bio: "Engineer working close to the systems layer: decentralized protocols, DeFi infrastructure, and the backend services that hold them up. I care more about how a system behaves under load and adversaries than which language it happens to be written in, and I pick up new stacks as the work demands. Active open-source contributor across the ecosystem, from low-level language tooling to core DeFi protocols, and currently researching how to remove liquidations from decentralized lending entirely.",
