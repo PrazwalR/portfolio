@@ -35,9 +35,7 @@ export const site = {
   socials: {
     github: "https://github.com/PrazwalR",
     x: "https://x.com/RattiPrazwal",
-    // TODO: real LinkedIn handle (currently a dead link — hidden in the footer
-    // until set; see contact-footer.tsx).
-    linkedin: "",
+    linkedin: "https://www.linkedin.com/in/prazwalratti/",
   },
 } as const;
 

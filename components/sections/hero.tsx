@@ -1,4 +1,4 @@
-import { ArrowRight, FileText, Github } from "lucide-react";
+import { ArrowRight, FileText, Github, Linkedin } from "lucide-react";
 
 import { site } from "@/content/site";
 import { Badge, Button, Container } from "@/components/ui";
@@ -65,6 +65,17 @@ export function Hero() {
               >
                 <Github />
                 GitHub
+              </a>
+            </Button>
+            <Button asChild size="lg" variant="ghost">
+              <a
+                href={site.socials.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                data-cursor="link"
+              >
+                <Linkedin />
+                LinkedIn
               </a>
             </Button>
           </div>
