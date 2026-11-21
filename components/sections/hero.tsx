@@ -1,7 +1,8 @@
 import { ArrowRight, FileText, Github, Linkedin } from "lucide-react";
 
 import { site } from "@/content/site";
-import { Badge, Button, Container } from "@/components/ui";
+import { Button, Container } from "@/components/ui";
+import { XLogo } from "@/components/ui/x-logo";
 import { HeroBackground } from "@/components/hero/hero-background";
 import { AnimatedName } from "@/components/hero/animated-name";
 import { SpeakerPortrait } from "@/components/hero/speaker-portrait";
@@ -17,9 +18,15 @@ export function Hero() {
       <Container className="py-section">
         <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-12">
           <div className="order-2 max-w-2xl lg:order-1">
-          <Badge variant="accent" className="mb-6">
+          <div className="mb-6 inline-flex items-center gap-2.5 rounded-full border border-border/80 bg-card/60 py-1 pl-2.5 pr-3.5 font-mono text-xs text-muted-foreground backdrop-blur-sm">
+            <span aria-hidden className="relative flex size-2">
+              <span className="absolute inline-flex size-full animate-ping rounded-full bg-emerald-400/70" />
+              <span className="relative inline-flex size-2 rounded-full bg-emerald-400" />
+            </span>
+            <span className="text-foreground/90">{site.status}</span>
+            <span aria-hidden className="text-border">/</span>
             {site.location}
-          </Badge>
+          </div>
           <h1
             id="hero-title"
             className="text-balance text-5xl font-semibold leading-[1.05] tracking-tight sm:text-6xl lg:text-7xl"
@@ -56,28 +63,44 @@ export function Hero() {
                 </span>
               </a>
             </Button>
-            <Button asChild size="lg" variant="ghost">
-              <a
-                href={site.socials.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                data-cursor="link"
-              >
-                <Github />
-                GitHub
-              </a>
-            </Button>
-            <Button asChild size="lg" variant="ghost">
-              <a
-                href={site.socials.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                data-cursor="link"
-              >
-                <Linkedin />
-                LinkedIn
-              </a>
-            </Button>
+            <div className="flex items-center gap-1 sm:ml-1">
+              <Button asChild size="icon" variant="ghost" className="size-12 [&_svg]:size-5">
+                <a
+                  href={site.socials.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="GitHub"
+                  title="GitHub"
+                  data-cursor="link"
+                >
+                  <Github />
+                </a>
+              </Button>
+              <Button asChild size="icon" variant="ghost" className="size-12 [&_svg]:size-5">
+                <a
+                  href={site.socials.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="LinkedIn"
+                  title="LinkedIn"
+                  data-cursor="link"
+                >
+                  <Linkedin />
+                </a>
+              </Button>
+              <Button asChild size="icon" variant="ghost" className="size-12">
+                <a
+                  href={site.socials.x}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="X"
+                  title="X"
+                  data-cursor="link"
+                >
+                  <XLogo />
+                </a>
+              </Button>
+            </div>
           </div>
           </div>
           <SpeakerPortrait className="order-1 lg:order-2" />

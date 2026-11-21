@@ -10,6 +10,8 @@ export const site = {
   name: "Prazwal Ratti",
   role: "Web3 & Backend Engineer",
   location: "Chennai, India",
+  /** hero status pill (matches the "Open to roles" line in Contact) */
+  status: "Open to roles",
 
   // Hero
   tagline:
@@ -17,6 +19,9 @@ export const site = {
 
   // About
   bio: "Engineer working close to the systems layer: decentralized protocols, DeFi infrastructure, and the backend services that hold them up. I care more about how a system behaves under load and adversaries than which language it happens to be written in, and I pick up new stacks as the work demands. Active open-source contributor across the ecosystem, from low-level language tooling to core DeFi protocols, and currently researching how to remove liquidations from decentralized lending entirely.",
+
+  /** About card "Now" line */
+  now: "Researching how to remove liquidations from decentralized lending entirely.",
 
   education: {
     school: "Vellore Institute of Technology (VIT), Chennai",

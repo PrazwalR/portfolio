@@ -44,6 +44,7 @@ export function OpenSource() {
       <Container>
         <Reveal>
           <SectionHeading
+            index="02"
             eyebrow="Open Source"
             titleId="open-source-title"
             title="Contributions upstream"

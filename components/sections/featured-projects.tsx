@@ -24,6 +24,7 @@ export function FeaturedProjects() {
       <Container>
         <Reveal>
           <SectionHeading
+            index="01"
             eyebrow="Featured Work"
             titleId="work-title"
             title="Projects I've shipped"
@@ -39,7 +40,10 @@ export function FeaturedProjects() {
                 data-cursor="link"
                 className="group h-full [transform-style:preserve-3d] will-change-transform"
               >
-                <Card className="flex h-full flex-col transition-[border-color,box-shadow] duration-base ease-out hover:border-accent/40 hover:shadow-glow">
+                <Card
+                  spotlight
+                  className="flex h-full flex-col transition-[border-color,box-shadow] duration-base ease-out hover:border-accent/40 hover:shadow-glow"
+                >
                 <CardHeader>
                   <div className="flex items-baseline justify-between gap-3">
                     <CardTitle className="flex items-center gap-1.5">
@@ -51,7 +55,7 @@ export function FeaturedProjects() {
                       >
                         {project.name}
                       </a>
-                      <ArrowUpRight className="size-4 text-muted-foreground transition-colors group-hover:text-accent" />
+                      <ArrowUpRight className="size-4 text-muted-foreground transition-[color,transform] duration-base ease-out group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent" />
                     </CardTitle>
                     <span className="font-mono text-xs text-muted-foreground">
                       {project.year}

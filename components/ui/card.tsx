@@ -2,6 +2,7 @@
  * Card — surface primitive built from --card / --border / --shadow tokens.
  * Compose with CardHeader / CardTitle / CardDescription / CardContent / CardFooter.
  * Add `interactive` for the hover-lift + accent-glow treatment used by project cards.
+ * Add `spotlight` for the pointer-following glow (implied by `interactive`).
  */
 import * as React from "react";
 
@@ -9,14 +10,17 @@ import { cn } from "@/lib/utils";
 
 interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   interactive?: boolean;
+  spotlight?: boolean;
 }
 
 const Card = React.forwardRef<HTMLDivElement, CardProps>(
-  ({ className, interactive = false, ...props }, ref) => (
+  ({ className, interactive = false, spotlight = interactive, ...props }, ref) => (
     <div
       ref={ref}
+      data-spotlight={spotlight ? "" : undefined}
       className={cn(
         "rounded-xl border border-border bg-card text-card-foreground shadow-md transition-[transform,box-shadow,border-color] duration-base ease-out",
+        spotlight && "spotlight",
         interactive &&
           "hover:-translate-y-1 hover:border-accent/40 hover:shadow-glow",
         className

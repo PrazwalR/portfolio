@@ -14,6 +14,15 @@ export interface Post {
 export const posts: Post[] = [
   {
     title:
+      "Building Touchstone: Making Arbitrage Pay for What It Takes, and Proving It Afterwards",
+    slug: "building-touchstone",
+    excerpt:
+      "A Uniswap v4 hook that holds a refundable deposit from swaps that look informed, then settles it against a signed Pyth price. None of the bugs that mattered crashed anything, and one let arbitrageurs switch the whole mechanism off.",
+    date: "2026-11-21",
+    tags: ["Solidity", "Uniswap v4", "DeFi", "Oracles", "TypeScript"],
+  },
+  {
+    title:
       "I Built a Hook to Charge Arbitrageurs More. For Three Weeks It Charged Them Less.",
     slug: "assay-adverse-selection-hook",
     excerpt:

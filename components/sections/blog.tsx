@@ -23,6 +23,7 @@ export function Blog() {
       <Container>
         <Reveal>
           <SectionHeading
+            index="06"
             eyebrow="Writing"
             titleId="blog-title"
             title="From the blog"
@@ -50,7 +51,7 @@ export function Blog() {
         ) : (
           <>
             <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {posts.map((post, i) => (
+              {posts.slice(0, 3).map((post, i) => (
                 <Reveal key={post.slug} delay={i * 0.05}>
                   <Card interactive className="group h-full">
                     <CardHeader>
@@ -64,7 +65,7 @@ export function Blog() {
                         >
                           {post.title}
                         </Link>
-                        <ArrowUpRight className="mt-1 size-4 shrink-0 text-muted-foreground transition-colors group-hover:text-accent" />
+                        <ArrowUpRight className="mt-1 size-4 shrink-0 text-muted-foreground transition-[color,transform] duration-base ease-out group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent" />
                       </CardTitle>
                     </CardHeader>
                     <CardContent>

@@ -12,6 +12,8 @@ import { cn } from "@/lib/utils";
 interface SectionHeadingProps
   extends Omit<React.HTMLAttributes<HTMLDivElement>, "title"> {
   eyebrow?: string;
+  /** optional section number shown before the eyebrow, e.g. "01" */
+  index?: string;
   title: React.ReactNode;
   description?: React.ReactNode;
   titleId?: string;
@@ -21,6 +23,7 @@ interface SectionHeadingProps
 
 function SectionHeading({
   eyebrow,
+  index,
   title,
   description,
   titleId,
@@ -40,6 +43,11 @@ function SectionHeading({
     >
       {eyebrow ? (
         <span className="inline-flex items-center gap-2 font-mono text-sm uppercase tracking-[0.2em] text-accent">
+          {index ? (
+            <span aria-hidden className="tabular-nums text-muted-foreground/60">
+              {index}
+            </span>
+          ) : null}
           <span aria-hidden className="h-px w-6 bg-accent/60" />
           {eyebrow}
         </span>

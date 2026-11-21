@@ -22,6 +22,7 @@ export function Skills() {
       <Container>
         <Reveal>
           <SectionHeading
+            index="04"
             eyebrow="Toolbox"
             titleId="skills-title"
             title="Skills & technologies"
@@ -35,7 +36,8 @@ export function Skills() {
               <Reveal
                 key={group.label}
                 delay={i * 0.04}
-                className="group bg-card"
+                className="group spotlight bg-card"
+                data-spotlight=""
               >
                 <div className="flex h-full flex-col gap-4 p-6">
                   <div className="flex items-center justify-between gap-3">

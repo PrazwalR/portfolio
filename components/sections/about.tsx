@@ -1,4 +1,4 @@
-import { GraduationCap } from "lucide-react";
+import { GraduationCap, MapPin, Telescope } from "lucide-react";
 
 import { site } from "@/content/site";
 import {
@@ -22,7 +22,8 @@ export function About() {
         <div className="grid gap-12 md:grid-cols-[1fr_minmax(0,22rem)]">
           <Reveal>
             <SectionHeading
-              eyebrow="About"
+              index="05"
+            eyebrow="About"
               titleId="about-title"
               title="Builder at the systems layer"
               description={site.bio}
@@ -30,8 +31,8 @@ export function About() {
           </Reveal>
 
           <Reveal delay={0.05}>
-            <Card className="h-full">
-              <CardContent className="flex flex-col gap-5 p-6">
+            <Card spotlight className="h-full">
+              <CardContent className="flex h-full flex-col gap-5 p-6">
                 <div className="flex items-center gap-2 font-mono text-sm uppercase tracking-[0.2em] text-muted-foreground">
                   <GraduationCap className="size-4 text-accent" />
                   Education
@@ -46,6 +47,20 @@ export function About() {
                   <div className="mt-2 font-mono text-xs text-muted-foreground/80">
                     <span>{education.period}</span>
                   </div>
+                </div>
+
+                <div className="mt-auto flex flex-col gap-4 border-t border-border/70 pt-5">
+                  <div className="flex items-center gap-2 font-mono text-sm uppercase tracking-[0.2em] text-muted-foreground">
+                    <Telescope className="size-4 text-accent" />
+                    Now
+                  </div>
+                  <p className="text-sm leading-relaxed text-foreground/90">
+                    {site.now}
+                  </p>
+                  <p className="inline-flex items-center gap-1.5 font-mono text-xs text-muted-foreground/80">
+                    <MapPin className="size-3.5" aria-hidden />
+                    {site.location}
+                  </p>
                 </div>
               </CardContent>
             </Card>

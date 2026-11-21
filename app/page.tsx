@@ -1,6 +1,7 @@
 import { site, SITE_URL } from "@/content/site";
 import { SiteHeader } from "@/components/site-header";
 import { Hero } from "@/components/sections/hero";
+import { UpstreamMarquee } from "@/components/sections/upstream-marquee";
 import { FeaturedProjects } from "@/components/sections/featured-projects";
 import { OpenSource } from "@/components/sections/open-source";
 import { Experience } from "@/components/sections/experience";
@@ -29,6 +30,7 @@ export default function Home() {
       <SiteHeader />
       <main id="main">
         <Hero />
+        <UpstreamMarquee />
         <FeaturedProjects />
         <OpenSource />
         <Experience />

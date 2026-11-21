@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { motion, useReducedMotion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 
 import { cn } from "@/lib/utils";
@@ -18,17 +20,49 @@ function sectionHref(href: string) {
   return href.startsWith("#") ? `/${href}` : href;
 }
 
-/** Sticky top nav. Solid/blur on scroll; collapses to a toggle panel on mobile. */
+/**
+ * Sticky top nav. Solid/blur on scroll; collapses to a toggle panel on mobile.
+ * On the homepage it also tracks which section is in view and slides a pill
+ * under that nav link (scroll-spy).
+ */
 export function SiteHeader() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [active, setActive] = useState<string | null>(null);
+  const pathname = usePathname();
+  const reduce = useReducedMotion();
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
+    const sections =
+      pathname === "/"
+        ? nav
+            .map((item) => document.getElementById(item.href.slice(1)))
+            .filter((el): el is HTMLElement => el !== null)
+        : [];
+
+    const onScroll = () => {
+      setScrolled(window.scrollY > 8);
+      if (!sections.length) return setActive(null);
+      // the last section whose top has passed ~35% of the viewport wins;
+      // at the very bottom the final section (contact) is always active
+      const atBottom =
+        window.innerHeight + window.scrollY >=
+        document.documentElement.scrollHeight - 4;
+      const line = window.innerHeight * 0.35;
+      let current: string | null = null;
+      for (const el of sections) {
+        if (el.getBoundingClientRect().top <= line) current = el.id;
+      }
+      setActive(atBottom ? sections[sections.length - 1].id : current);
+    };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, [pathname]);
 
   return (
     <header
@@ -49,17 +83,36 @@ export function SiteHeader() {
 
         <nav
           aria-label="Primary"
-          className="hidden items-center gap-7 md:flex"
+          className="hidden items-center gap-1 md:flex"
         >
-          {nav.map((item) => (
-            <Link
-              key={item.href}
-              href={sectionHref(item.href)}
-              className="rounded-sm text-sm text-muted-foreground transition-colors duration-fast hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-            >
-              {item.label}
-            </Link>
-          ))}
+          {nav.map((item) => {
+            const isActive = active === item.href.slice(1);
+            return (
+              <Link
+                key={item.href}
+                href={sectionHref(item.href)}
+                aria-current={isActive ? "true" : undefined}
+                className={cn(
+                  "relative isolate rounded-full px-3 py-1.5 text-sm transition-colors duration-fast hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+                  isActive ? "text-foreground" : "text-muted-foreground"
+                )}
+              >
+                {isActive ? (
+                  <motion.span
+                    layoutId="nav-active"
+                    aria-hidden
+                    className="absolute inset-0 -z-10 rounded-full border border-accent/25 bg-accent/10"
+                    transition={
+                      reduce
+                        ? { duration: 0 }
+                        : { type: "spring", stiffness: 420, damping: 36 }
+                    }
+                  />
+                ) : null}
+                {item.label}
+              </Link>
+            );
+          })}
         </nav>
 
         <div className="hidden md:block">

@@ -8,6 +8,7 @@ import { useEffect } from "react";
  *  - [data-magnetic] : magnetic pull toward pointer (strength/radius, spring snap-back)
  *  - [data-tilt]     : 3D pointer-tilt (perspective 1000px, --tilt-max)
  *  - [data-btn]      : white click ripple
+ *  - [data-spotlight]: writes --mx/--my so the .spotlight glow tracks the pointer
  * All gated on (pointer:fine) + !prefers-reduced-motion — touch/reduced-motion
  * get none of it.
  */
@@ -81,6 +82,19 @@ export function Interactions() {
         c.removeEventListener("pointerleave", onLeave);
       });
     }
+
+    // ---- pointer spotlight (delegated, so cards rendered later still work) ----
+    const onSpot = (e: PointerEvent) => {
+      const t = (e.target as Element | null)?.closest?.(
+        "[data-spotlight]"
+      ) as HTMLElement | null;
+      if (!t) return;
+      const r = t.getBoundingClientRect();
+      t.style.setProperty("--mx", `${(e.clientX - r.left).toFixed(1)}px`);
+      t.style.setProperty("--my", `${(e.clientY - r.top).toFixed(1)}px`);
+    };
+    document.addEventListener("pointermove", onSpot, { passive: true });
+    cleanups.push(() => document.removeEventListener("pointermove", onSpot));
 
     // ---- click ripple ----
     const onClick = (e: MouseEvent) => {

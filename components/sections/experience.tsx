@@ -22,6 +22,7 @@ export function Experience() {
       <Container>
         <Reveal>
           <SectionHeading
+            index="03"
             eyebrow="Experience"
             titleId="experience-title"
             title="Hackathons, speaking & community"
@@ -36,18 +37,23 @@ export function Experience() {
               <Reveal key={a.title} delay={i * 0.065}>
                 <Card
                   interactive
-                  className="grid overflow-hidden md:grid-cols-[minmax(0,22rem)_1fr]"
+                  className="group grid overflow-hidden md:grid-cols-[minmax(0,22rem)_1fr]"
                 >
-                  <div className="relative aspect-[16/10] md:aspect-auto md:h-full md:min-h-[16rem]">
+                  <div className="relative aspect-[16/10] overflow-hidden md:aspect-auto md:h-full md:min-h-[16rem]">
                     <EventImage
                       src={a.images[0]}
                       alt={a.title}
-                      className="absolute inset-0 h-full w-full object-cover"
+                      className="absolute inset-0 h-full w-full object-cover transition-transform duration-slow ease-out group-hover:scale-[1.04]"
                       style={
                         a.imagePosition
                           ? { objectPosition: a.imagePosition }
                           : undefined
                       }
+                    />
+                    {/* soft seam where the photo meets the card body */}
+                    <div
+                      aria-hidden
+                      className="pointer-events-none absolute inset-0 bg-gradient-to-t from-card/70 via-transparent to-transparent md:bg-gradient-to-l md:from-card/50 md:via-transparent"
                     />
                   </div>
 
