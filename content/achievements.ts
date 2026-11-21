@@ -5,7 +5,7 @@
  */
 export interface Achievement {
   title: string;
-  kind: "Hackathon" | "Speaking" | "Award";
+  kind: "Hackathon" | "Speaking" | "Award" | "Volunteer";
   event: string;
   location?: string;
   date: string;
@@ -20,6 +20,57 @@ export interface Achievement {
 }
 
 export const achievements: Achievement[] = [
+  {
+    title: "Touchstone at ETHGlobal Mumbai",
+    kind: "Hackathon",
+    event: "ETHGlobal Mumbai",
+    date: "2026",
+    blurb:
+      "Built Touchstone, a Uniswap v4 hook that charges arbitrage only what it actually took. It makes informed order flow pay liquidity providers for the edge it takes, and refunds everyone else. When a swap looks informed, the hook holds a small refundable deposit from that swap's own output, in the same transaction. A swap looks informed when it is the first large trade in a block, part of a one-sided burst, a trade toward the Chainlink price, or a trade while the market is closed. Seconds later anyone can settle the deposit against a signed Pyth price. If the trade beat the outside price by more than a margin, part of the excess vests to LPs; the rest goes back to the trader.",
+    highlights: [
+      "On Arbitrum Sepolia the hook has handled 14 real swaps and held a deposit on 13: 7 settled with part of the arbitrage edge paid to LPs, 5 were judged benign and refunded in full, and 1 expired with a full refund.",
+      "Seven contracts deployed and verified on Arbiscan: hook, settler, factory, lens, guarded router, rebate ledger and an arbitrage licence auction.",
+      "264 contract tests (including 11 invariant tests) and 109 backend tests. Line coverage on the contracts is 99.6% and branch coverage 99.3%, after a documented review of excluded lines; CI fails below 95%.",
+      "Historical backtest: on 184,145 held-out Uniswap swaps, the trigger caught 98.9% of toxic flow while flagging 23.4% of swaps. Experiments were registered and hashed before they ran.",
+      "Full stack: a keeper that settles against Pyth, an indexer with a history API and alerts, a live dashboard, and a Rust engine that replays the deployed bytecode.",
+      "Still unaudited, testnet only. The backtest shows the trigger detects informed flow, not that LPs earn more, and testnet swaps say nothing about LP returns. Very fine split orders evade the trigger in simulation, and the pool-freshness simulation failed its threshold. Both failures are published next to the passes.",
+      "Live app: touchstone.prazwal.xyz · Code: github.com/PrazwalR/Touchstone",
+    ],
+    tags: [
+      "Uniswap v4",
+      "Solidity",
+      "DeFi",
+      "Oracles",
+      "Pyth",
+      "Chainlink",
+      "Arbitrum",
+      "TypeScript",
+    ],
+    images: ["/achievements/ethglobal-mumbai.jpg"],
+    href: "https://ethglobal.com/showcase/touchstone-fs733",
+  },
+  {
+    title: "Volunteer at Devcon 8 India",
+    kind: "Volunteer",
+    event: "Devcon 8 India",
+    location: "Mumbai",
+    date: "Nov 3–6, 2026",
+    blurb:
+      "Volunteered at Devcon, the Ethereum Foundation's flagship developer conference. I helped attendees, speakers and community groups through the event, and got to meet builders, researchers and founders from across the ecosystem. The enthusiasm in every hallway conversation, workshop and side event made this one of my favourite experiences. Seeing how many people care about building open, useful technology was very motivating. I left with new friends, new ideas, and a stronger drive to keep contributing to the Ethereum community.",
+    highlights: [
+      "Assisted speakers and community teams during talks and workshops.",
+      "Answered newcomer questions and pointed them to the right sessions and teams.",
+      "Worked with a team of volunteers to keep the event running smoothly.",
+    ],
+    tags: ["Ethereum", "Devcon", "Community", "Volunteering"],
+    // photo first (card hero), then the volunteering certificate as a thumbnail
+    images: [
+      "/achievements/devcon-8-mumbai.jpg",
+      "/achievements/devcon-8-certificate.jpg",
+    ],
+    // keeps both the face and the DEVCON letters in frame at every card size
+    imagePosition: "center 52%",
+  },
   {
     title: "Assay Graduated UHI10 with a $1,500 Developer Grant",
     kind: "Award",

@@ -1,11 +1,16 @@
-import { ArrowUpRight, Mic, Sparkles, Trophy } from "lucide-react";
+import { ArrowUpRight, HandHeart, Mic, Sparkles, Trophy } from "lucide-react";
 
 import { achievements } from "@/content/achievements";
 import { Badge, Card, Container, SectionHeading } from "@/components/ui";
 import { EventImage } from "@/components/ui/event-image";
 import { Reveal } from "@/components/motion/reveal";
 
-const kindIcon = { Hackathon: Trophy, Speaking: Mic, Award: Sparkles } as const;
+const kindIcon = {
+  Hackathon: Trophy,
+  Speaking: Mic,
+  Award: Sparkles,
+  Volunteer: HandHeart,
+} as const;
 
 export function Experience() {
   return (
@@ -19,7 +24,7 @@ export function Experience() {
           <SectionHeading
             eyebrow="Experience"
             titleId="experience-title"
-            title="Hackathons & speaking"
+            title="Hackathons, speaking & community"
             description="Wins, builds, and stage time from the Web3 trenches."
           />
         </Reveal>
@@ -84,16 +89,26 @@ export function Experience() {
 
                     {a.images.length > 1 ? (
                       <div className="flex flex-wrap gap-2">
+                        {/* thumbnails open full size, so a certificate is actually readable */}
                         {a.images.slice(1).map((src) => (
-                          <EventImage
+                          <a
                             key={src}
-                            src={src}
-                            alt={a.title}
-                            fill={false}
-                            width={80}
-                            height={56}
-                            className="h-14 w-20 rounded-md object-cover"
-                          />
+                            href={src}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            data-cursor="link"
+                            aria-label={`Open full-size image: ${a.title}`}
+                            className="overflow-hidden rounded-md ring-1 ring-border/60 transition hover:ring-accent"
+                          >
+                            <EventImage
+                              src={src}
+                              alt={a.title}
+                              fill={false}
+                              width={80}
+                              height={56}
+                              className="h-14 w-20 object-cover"
+                            />
+                          </a>
                         ))}
                       </div>
                     ) : null}
